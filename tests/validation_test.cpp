@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <thread>
 #include "sequential_tree.h"
+#include "parallel_tree.h"
+#include <algorithm>
 
 TEST(SequentialTest, pruebaSimple) {
   SequentialTree* arbol_datos;
@@ -10,7 +12,15 @@ TEST(SequentialTest, pruebaSimple) {
   arbol_datos->left->left = new SequentialTree({20, 22});
   arbol_datos->left->right = new SequentialTree({23});
 
+  ParallelTree* arbol_paralelo_datos;
+  arbol_paralelo_datos = new ParallelTree({18, 0, 17});
+  arbol_paralelo_datos->left = new ParallelTree({25, 20});
+  arbol_paralelo_datos->right = new ParallelTree({17, 19, 0});
+  arbol_paralelo_datos->left->left = new ParallelTree({20, 22});
+  arbol_paralelo_datos->left->right = new ParallelTree({23});
+
   EXPECT_EQ(23, arbol_datos->calculateMaxAverage());
+  EXPECT_EQ(arbol_datos->calculateMaxAverage(), arbol_paralelo_datos->calculateMaxAverage());
   delete arbol_datos;
 }
 
