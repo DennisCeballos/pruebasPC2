@@ -8,9 +8,9 @@
 
 static SequentialTree* arbol_datos = nullptr;
 static ParallelTree* arbol_paralelo_datos = nullptr;
-static const int VALOR_MEDIO = 5;
-static const int NUMERO_ELEMENTOS = 3;
-static const int NUMERO_VECTORES = 5;
+static const int VALOR_MEDIO = 15;
+static const int NUMERO_ELEMENTOS = 5;
+static const int NUMERO_VECTORES = 30;
 
 void inicializa() {
   std::random_device rd;
