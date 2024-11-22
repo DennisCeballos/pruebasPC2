@@ -33,15 +33,13 @@ double ParallelTree::calculateMaxAverageInternal(SensorTree* node_ptr) {
   // llamadas recursivas para los hijos
   if (id_thread == 0)
   {
-    #pragma omp parallel
+    #pragma omp parallel sections
     {
-    #pragma omp task shared(max_avg_left)
+    #pragma omp section
     max_avg_left = calculateMaxAverageInternal(node_ptr->left);
     
-    #pragma omp task shared(max_avg_right)
+    #pragma omp section
     max_avg_right = calculateMaxAverageInternal(node_ptr->right);
-
-    #pragma omp taskwait
     }
   }
   else
