@@ -34,6 +34,18 @@ TEST(ParallelTest, pruebaSimple) {
   delete arbol_datos;
 }
 
+TEST(ParallelTest, pruebaInsert) {
+  ParallelTree* arbol_datos = new ParallelTree({18, 0, 17});
+  arbol_datos->insert({25, 20});
+  arbol_datos->insert({20, 22});
+  arbol_datos->insert({23});
+  arbol_datos->insert({17, 19, 0});
+
+  EXPECT_EQ(23, arbol_datos->calculateMaxAverage());
+  EXPECT_EQ(5, arbol_datos->contadorEstaciones);
+  delete arbol_datos;
+}
+
 TEST(SequentialTest, pruebaInsert) {
   SequentialTree* arbol_datos = new SequentialTree({18, 0, 17});
   arbol_datos->insert({25, 20});
@@ -48,6 +60,12 @@ TEST(SequentialTest, pruebaInsert) {
 
 TEST(SequentialTest, pruebaVacio) {
   SequentialTree* arbol_vacio = new SequentialTree({});
+  EXPECT_EQ(0.0, arbol_vacio->calculateMaxAverage());
+  delete arbol_vacio;
+}
+
+TEST(ParallelTest, pruebaVacio) {
+  ParallelTree* arbol_vacio = new ParallelTree({});
   EXPECT_EQ(0.0, arbol_vacio->calculateMaxAverage());
   delete arbol_vacio;
 }
