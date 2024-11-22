@@ -24,17 +24,24 @@ void inicializa() {
     if(arbol_datos == nullptr)
     {
       arbol_datos = new SequentialTree(tmp);
-      arbol_paralelo_datos = new ParallelTree(tmp);
     }
     else
     {
       arbol_datos->insert(tmp);
+    }
+
+    if(arbol_paralelo_datos == nullptr)
+    {
+      arbol_paralelo_datos = new ParallelTree(tmp);
+    }
+    else
+    {
       arbol_paralelo_datos->insert(tmp);
     }
   }
 }
 
-void finaliza() { delete arbol_datos; }
+void finaliza() { delete arbol_datos; delete arbol_paralelo_datos; }
 
 static void BM_secuencial(benchmark::State& state) {
   for(auto _ : state) {
